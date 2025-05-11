@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>物件新規登録</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+    }
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: white;
+}
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    header .login {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: #ffffff;
+      color: white;
+      padding: 1rem;
+    }
+
+    .sidebar h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color:black;
+      padding:5px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar li {
+      margin-bottom: 1rem;
+    }
+
+    .sidebar a {
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #333;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    }
+
+    .content {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .content h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+
+    form {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    td {
+      padding: 10px;
+      vertical-align: top;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      background-color: #4e54c8;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3b40a4;
+    }
+
+    .page-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+        h1 a{
+      text-decoration: none;
+      color:white;
+    }
+
+
+    p.new {
+    text-align: center;
+ 
+    font-weight: bold;
+    font-size: 20px;
+}
+
+  </style>
+</head>
+<body>
+
+  <header>
+     <h1><a href="/" class="href">todoAPP</a></h1>
+    <a href="/login" class="login">ログイン</a>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar">
+      <h2>メニュー</h2>
+      <ul>
+        <a href="/">TOP</a>
+        <li><a href="/new">新規登録</a></li>
+        <li><a href="/list">TODO一覧</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+    <p class="new">物件新規登録</p>
+
+    <form action="/new" method="POST" id="todo-form">
+      <table>
+        <tr>
+          <td><label for="title">todo名：</label></td>
+          <td><input type="text" id="title" name="title" required></td>
+        </tr>
+
+        <tr>
+          <td><label for="contents">todo内容：</label></td>
+          <td><textarea id="contents" name="contents" required></textarea></td>
+        </tr>
+
+        <tr>
+          <td><label for="name">担当者名：</label></td>
+          <td>
+            <select name="name" id="name">
+              <option value="-">-</option>
+              <option value="今井">今井</option>
+              <option value="鎌倉">鎌倉</option>
+              <option value="宮澤">宮澤</option>
+              <option value="小池">小池</option>
+              <option value="小田切">小田切</option>
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="progress">進捗度（0〜100）：</label></td>
+          <td><input type="text" id="progress" name="progress" required></td>
+        </tr>
+
+        <tr>
+          <td><label for="priority">優先度：</label></td>
+          <td>
+            <select name="priority" id="priority">
+              <option value="0">-</option>
+              <option value="1">最優先</option>
+              <option value="2">高</option>
+              <option value="3">中</option>
+              <option value="4">小</option>
+              <option value="5">完了</option>
+              <option value="6">保留中</option>
+              <option value="7">確認中</option>
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="due_date">納期予定日：</label></td>
+          <td><input type="date" name="due_date" id="due_date" required></td>
+        </tr>
+
+        <tr>
+          <td><label for="progress_site">対象事業：</label></td>
+          <td>
+            <select name="progress_site" id="progress_site">
+              <option value="-">-</option>
+              <option value="マーケティング関係">マーケティング関係</option>
+              <option value="販売販売関係">販売販売関係</option>
+              <option value="経理関係">経理関係</option>
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="now_comment">備考：</label></td>
+          <td><textarea id="now_comment" name="now_comment" required></textarea></td>
+        </tr>
+
+        <tr>
+          <td colspan="2" class="center">
+            <button type="submit">送信</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </main>
+
+  <script src="../js/script.js"></script>
+
+</body>
+</html>

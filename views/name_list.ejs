@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f0f2f5;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      color: white;
+    }
+
+    header .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    header .login {
+      background: white;
+      color: #764ba2;
+      padding: 8px 16px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      display: flex;
+      min-height: calc(100vh - 60px); /* ヘッダー高さ差し引き */
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: #ffffff;
+      border-right: 1px solid #ccc;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      margin-bottom: 10px;
+      text-decoration: none;
+      color: #333;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+    }
+
+    .sidebar a:hover {
+      background-color: #ececec;
+    }
+
+    .main {
+      flex: 1;
+      padding: 20px;
+    }
+
+    h3 {
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: linear-gradient(to right, #e0ecff, #ffffff);
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #d0d8ff;
+    }
+
+    a.add, a.delete {
+      padding: 5px 10px;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    a.add {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    a.delete {
+      background-color: #f44336;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">todoAPP</div>
+  <a href="/login" class="login">ログイン</a>
+</header>
+
+<div class="container">
+  <nav class="sidebar">
+    <a href="/">TOP</a>
+    <a href="/new">新規登録</a>
+    <a href="/list">TODO一覧</a>
+    <a href="/list/<%= todo.name %>">担当者を選択</a>
+  </nav>
+
+  <main class="main">
+    <h3>最優先TODO</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>TODOタイトル</th>
+          <th>進捗度（0〜100）</th>
+          <th>納期予定日</th>
+          <th>対象事業</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- todos の各項目を表示 -->
+        <% todos.forEach(todo => { %>
+        <tr>
+          <td><%= todo.title %></td>
+          <td><%= todo.progress %></td>
+          <td><%= todo.due_date %></td>
+          <td><%= todo.progress_site %></td>
+          <td>
+            <a href="/add/<%= todo.id %>" class="add">更新</a>
+            <a href="/delete/<%= todo.id %>" class="delete">削除する</a>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </main>
+</div>
+
+</body>
+</html>
+
